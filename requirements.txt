@@ -1,0 +1,11 @@
+tqdm
+datetime
+requests==2.27.0
+quart_cors
+uvicorn
+httptools
+pyyaml
+quart
+hypercorn==0.14.3
+python-dotenv
+apscheduler
