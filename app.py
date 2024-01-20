@@ -6,7 +6,7 @@ PORT = 7001
 
 @app.route("/", methods=["GET"])
 async def home():
-    return "<h1> CEREBRUS HOME - IF YOU SEE THIS WE UP NOW </h1>"
+    return "<h1> SERVER IS ALIVE - IF YOU SEE THIS WE UP NOW </h1>"
 
 
 @app.route("/health", methods=["GET"])
