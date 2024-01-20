@@ -26,7 +26,7 @@ if __name__ == "__main__":
     app.run(
         port=int(os.environ.get("PORT", PORT)),
         debug=True,
-        use_reloader=False,
+        use_reloader=True,
         threaded=True,
     )
 
