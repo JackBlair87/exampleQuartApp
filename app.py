@@ -9,7 +9,7 @@ async def home():
     return "<h1> SERVER IS ALIVE - IF YOU SEE THIS WE UP NOW </h1>"
 
 @app.route("/healthHTML", methods=["GET"])
-async def home():
+async def healthHTML():
     """
     Health(): The Health Page for the API
     """
