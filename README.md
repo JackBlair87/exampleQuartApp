@@ -10,3 +10,17 @@ However, creating a venv was werird. In worst case, dont create a venv and just 
 must use sudo on `sudo gunicorn -b 0.0.0.0:8000 app:app` to run and see errors
 
 `sudo gunicorn -b 0.0.0.0:8000 -k uvicorn.workers.UvicornWorker app:app`
+
+```jsx
+[Unit]
+Description=Gunicorn instance for a simple quart app
+After=network.target
+[Service]
+User=testing
+Group=www-data
+WorkingDirectory=/home/testing/exampleQuartApp
+ExecStart=/home/testing/exampleQuartApp/venv/bin/gunicorn -b localhost:8000 app:app
+Restart=always
+[Install]
+WantedBy=multi-user.target
+```

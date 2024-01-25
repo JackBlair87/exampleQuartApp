@@ -8,6 +8,13 @@ PORT = 7001
 async def home():
     return "<h1> SERVER IS ALIVE - IF YOU SEE THIS WE UP NOW </h1>"
 
+@app.route("/healthHTML", methods=["GET"])
+async def home():
+    """
+    Health(): The Health Page for the API
+    """
+    return "<h1> SERVER IS ALIVE - IF YOU SEE THIS WE UP NOW </h1>", 200
+
 
 @app.route("/health", methods=["GET"])
 async def health():
