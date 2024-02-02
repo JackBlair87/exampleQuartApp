@@ -1,9 +1,22 @@
-FROM python:3.7-stretch
-# RUN apt-get update -y && apt-get install libgl1 && apt-get install libglib2.0-0
-RUN apt-get install -y python-pip python-dev build-essential ffmpeg
-COPY . /app
-WORKDIR /app
-RUN pip install -r requirements.txt
+# Use an official Python runtime as a parent image
+FROM python:3.10
 
-EXPOSE 8000
-CMD ["python3","app.py"]
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+RUN apt-get install -y python-pip python-dev build-essential ffmpeg
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
+CMD ["python", "app.py"]
