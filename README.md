@@ -24,3 +24,34 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
+
+====================================
+
+Docker Installation
+We have successfully logged in. Now start the Docker installation. Firstly, update our package manager with sudo apt-get update.
+
+Check Docker documentation for more information and installation.
+
+Type in the command line step by step.
+
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+https://medium.com/hardwareandro/install-docker-on-azure-virtual-machine-github-docker-hub-azure-deploy-pipeline-part-1-4b1e73dd0d7
+
+https://www.docker.com/blog/how-to-deploy-containers-to-azure-aci-using-docker-cli-and-compose/
