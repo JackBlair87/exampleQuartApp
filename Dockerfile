@@ -15,7 +15,7 @@ RUN apt-get install -y python3-pip python-dev-is-python3 build-essential
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Make port 5000 available to the world outside this container
-EXPOSE 5000
+EXPOSE 8000
 
 RUN ls /
 
@@ -23,5 +23,4 @@ RUN ls /
 ENV NAME World
 
 # Run app.py when the container launches
-# CMD ["gunicorn", "-c", "gunicorn_config.py", "app:app", "--preload"]
-CMD ["python", "app.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-c", "gunicorn_config.py", "app:app", "--preload"]

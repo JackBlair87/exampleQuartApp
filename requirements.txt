@@ -9,3 +9,4 @@ quart
 hypercorn==0.14.3
 python-dotenv
 apscheduler
+gunicorn
