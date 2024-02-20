@@ -23,15 +23,16 @@ jobs:
         docker build -t [VIDLABS_ACR_NAME].azurecr.io/vidlabs_prod:$(date +%s) .
         docker push [VIDLABS_ACR_NAME].azurecr.io/vidlabs_prod:$(date +%s)
 
-    # - uses: azure/docker-login@v1
-    #   with:
-    #     login-server: [VIDLABS_ACR_NAME].azurecr.io
-    #     username: ${{ secrets.REGISTRY_USERNAME }}
-    #     password: ${{ secrets.REGISTRY_PASSWORD }}
+    - uses: azure/docker-login@v1
+      with:
+        login-server: [VIDLABS_ACR_NAME].azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    # - uses: azure/webapps-deploy@v2
-    #   with:
-    #     app-name: '[YOUR_APP_NAME]'
-    #     slot-name: '[YOUR_SLOT_NAME]'
-    #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-    #     images: '[VIDLABS_ACR_NAME].azurecr.io/vidlabs_prod:$(date +%s)
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: '[YOUR_APP_NAME]'
+        slot-name: '[YOUR_SLOT_NAME]'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: '[VIDLABS_ACR_NAME].azurecr.io/vidlabs_prod:$(date +%s)'
+
