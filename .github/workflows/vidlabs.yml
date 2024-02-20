@@ -25,3 +25,18 @@ jobs:
         docker build -t [VIDLABS_ACR_NAME].azurecr.io/vidlabs_prod:$TAG .
         docker push [VIDLABS_ACR_NAME].azurecr.io/vidlabs_prod:$TAG
         echo "::set-output name=tag::$TAG"
+    
+    - name: Login to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: [VIDLABS_ACR_NAME].azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: '[YOUR_APP_NAME]'
+        slot-name: '[YOUR_SLOT_NAME]'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: '[VIDLABS_ACR_NAME].azurecr.io/vidlabs_prod:${{ steps.build_and_push.outputs.tag }}'
